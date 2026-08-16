@@ -1454,3 +1454,9 @@ input[type="submit"].submit-btn {
 .menu.monter {
     left: 0 !important;
 }
+@media only screen and (max-width: 768px) {
+    .banniere-contenu .gauche {
+        padding-left: 20px;
+        padding-right: 10px;
+    }
+}
