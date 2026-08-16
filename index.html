@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>E-Shikina</title>
+</head>
+<style>
+    /* ---------- EFFET MULTICOLORE ET CLIGNOTANT ---------- */
+    @keyframes clignote-multicolore {
+        0% { background-color: #ff0000; color: #ffffff; transform: scale(1); box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); }
+        12% { background-color: #ff8800; color: #ffffff; transform: scale(1.08); box-shadow: 0 0 35px rgba(255, 136, 0, 0.8); }
+        25% { background-color: #ffff00; color: #000000; transform: scale(1); box-shadow: 0 0 30px rgba(255, 255, 0, 0.8); }
+        37% { background-color: #00cc00; color: #ffffff; transform: scale(1.08); box-shadow: 0 0 35px rgba(0, 204, 0, 0.8); }
+        50% { background-color: #0099ff; color: #ffffff; transform: scale(1); box-shadow: 0 0 30px rgba(0, 153, 255, 0.8); }
+        62% { background-color: #6633ff; color: #ffffff; transform: scale(1.08); box-shadow: 0 0 35px rgba(102, 51, 255, 0.8); }
+        75% { background-color: #ff00ff; color: #ffffff; transform: scale(1); box-shadow: 0 0 30px rgba(255, 0, 255, 0.8); }
+        87% { background-color: #ff0066; color: #ffffff; transform: scale(1.08); box-shadow: 0 0 35px rgba(255, 0, 102, 0.8); }
+        100% { background-color: #ff0000; color: #ffffff; transform: scale(1); box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); }
+    }
+
+    .nav-link-avis {
+        background-color: #ff6347 !important;
+        padding: 10px 20px !important;
+        border-radius: 30px !important;
+        color: #ffffff !important;
+        font-weight: bold !important;
+        font-size: 1.1em !important;
+        animation: clignote-multicolore 2s infinite !important;
+        transition: all 0.3s ease !important;
+        text-shadow: 0 0 8px rgba(0,0,0,0.5) !important;
+         margin-left: 20px !important; 
+    }
+
+    .nav-link-avis:hover {
+        transform: scale(1.15) !important;
+        box-shadow: 0 0 60px rgba(255, 200, 0, 0.9) !important;
+        background-color: #ffaa00 !important;
+        color: #000 !important;
+        transition: all 0.15s ease !important;
+    }
+</style>
+
+<body>
+    <div class="promo">
+        <span>Vente flash 80% de Reduction</span>
+    </div>
+    <header class="header">
+        <nav class="nav container">
+            <div class="navigation d-flex">
+                <div class="icon1">
+                    <i class='bx bx-menu'></i>
+                </div> 
+                <div class="logo">
+                    <a href="#"> <span>E</span>-Shikina</a>
+                </div>
+                <div class="menu">
+                    <div class="top">
+                        <span class="fermer">Fermer <i class='bx bx-x'></i> </span>
+                    </div>
+                    <ul class="nav_list d-flex">
+                         <li class="nav-item">
+                            <a href="#" class="nav-link">Accueil</a>
+                         </li>
+                         <li class="nav-item">
+                            <a href="#" class="nav-link">Boutique</a>
+                         </li>
+                         <li class="nav-item">
+                            <a href="#" class="nav-link">Blog</a>
+                         </li>
+                         <li class="nav-item">
+                            <a href="#" class="nav-link">A propos de nous</a>
+                         </li>
+                        <li class="nav-item">
+                            <button id="contactBtn" class="nav-link contact-btn" onclick="document.getElementById('contactModal').style.display='block'">
+                                contact</button>
+                        </li>
+                        <li class="nav-item"><a class="nav-link nav-link-avis" href="avis.html">Donner votre avis</a></li> 
+                    </ul>
+                </div> <!-- ferme .menu -->
+
+                <div id="contactModal" class="contact-modal" style="display: none;">
+                    <div class="modal-content">
+                        <span class="close-modal" onclick="document.getElementById('contactModal').style.display='none'">&times;</span>
+                        <h2>Contactez E-Shikina</h2>
+                        
+                        <form id="contactForm" method="POST">
+                            <div class="form-group">
+                                <label for="name">Nom complet *</label>
+                                <input type="text" id="name" name="name" required minlength="2">
+                                <div class="error-message" id="nameError"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                                <div class="error-message" id="emailError"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Sujet</label>
+                                <input type="text" id="subject" name="subject" placeholder="Ex: Demande d'information">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" rows="5" required minlength="10" placeholder="Votre message..."></textarea>
+                                <div class="error-message" id="messageError"></div>
+                            </div>
+                            
+                            <div class="form-group checkbox">
+                                <input type="checkbox" id="consent" name="consent" required>
+                                <label for="consent">J'accepte que mes données soient utilisées pour me recontacter *</label>
+                                <div class="error-message" id="consentError"></div>
+                            </div>
+                            
+                            <div id="formMessages"></div>
+                            
+                            <!-- BOUTON ENVOYER SIMPLE -->
+                            <button type="submit" name="envoyer" class="submit-btn" id="submitBtn" 
+                                    style="background: #4CAF50; color: white; padding: 15px; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; width: 100%; margin-top: 20px; cursor: pointer;">
+                                📤 Envoyer le message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="icons d-flex">
+                    <div><i class='bx bx-search'></i></div>
+                    <div><i class='bx bx-user'></i></div>
+                    <div><i class='bx bx-heart'></i></div>
+                    <div>
+                    <div class="cart-icon-container">
+                        <i class='bx bx-shopping-bag' id="cartIcon"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </nav>
+        <div class="banniere">
+        <div class="banniere-contenu d-flex container">
+            <div class="gauche">
+               <span class="Sous-titre">OBTENEZ VOTRE COLLECTION A PARTIR D'AUJOURD'HUI</span>
+               <h1 class="titre">
+                    jusqu'à
+                    <span class="couleur">80% <br/>
+                        de réduction</span>
+                        sur <br/>
+                        nos offre de la semaine
+               </h1> 
+               <h5>Du 12 fevreir au 28 fevrier 2026</h5>
+               <a href="#" class="btn">ACHETEZ MAINTENANT</a>
+                </div>
+                <div class="droit">
+                <img src="./picture/fond3.png" alt="">
+            </div>
+
+        </div>
+    </div>
+    </header>
+
+    <section class="section services">
+        <div class="service-center container">
+            <div class="service">
+                <span class="icon"><div><i class='bx bx-purchase-tag'></i></div></span>
+                <h4>Livraison gratuite</h4>
+                <span class="text">comande supérieur à 400000ar</span>
+            </div>
+            <div class="service">
+                <span class="icon"><div><i class='bx bx-lock'></i></div></span>
+                <h4>Payement sécurisé</h4>
+                <span class="text">moyen de payement sécurisé</span>
+            </div>
+            <div class="service">
+                <span class="icon"><div><i class='bx bxs-left-arrow-circle'></i></div></span>
+                <h4>15-jours pour retour </h4>
+                <span class="text">Produit 100% garentie</span>
+            </div>
+            <div class="service">
+                <span class="icon"><div><i class='bx bx-headphone'></i></div></span>
+                <h4>24h/6 Support</h4>
+                <span class="text">Assistance client</span>
+            </div>
+        </div>
+
+    </section>
+    <section class="section">
+    <div class="titre">
+        <h1> <span>Nouvelles</span> Arrivages</h1>
+    </div>
+    <div class="centre-produit container">
+        <!-- PRODUIT 1 -->
+        <div class="produit">
+            <div class="img-cover">
+                <img src="./picture/MsaryH1.jpg" alt="Montre pour homme">
+            </div>
+            <p>Montre pour homme</p>
+            <div class="rating">
+                <i class='bx bxs-star'></i> 
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+            </div>  
+            <div class="prix">70000ar</div> 
+            <button class="add-to-cart" 
+                    data-id="montre-1" 
+                    data-name="Montre pour homme" 
+                    data-price="70000ar"
+                    data-image="./picture/Montre pour homme.jpg">
+                <i class='bx bx-cart-add'></i> Ajouter au panier
+            </button>
+        </div>
+
+        <!-- PRODUIT 2 -->
+        <div class="produit">
+            <div class="img-cover">
+                <img src="./picture/MsaryF2.jpeg" alt="Montre pour femme">
+            </div>
+            <p>Montre pour femme</p>
+            <div class="rating">
+                <i class='bx bxs-star'></i> 
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+            </div> 
+            <div class="prix">70000ar</div>
+            <button class="add-to-cart" 
+                    data-id="montre-2" 
+                    data-name="Montre pour femme" 
+                    data-price="70000ar"
+                    data-image="./picture/Montre pour femme.jpeg">
+                <i class='bx bx-cart-add'></i> Ajouter au panier
+            </button>
+        </div>
+
+        <!-- PRODUIT 3 -->
+        <div class="produit">
+            <div class="img-cover">
+                <img src="./picture/TPL3.jpg" alt="Tenue de sport">
+            </div>
+            <p>Tenue de sport</p>
+            <div class="rating">
+                <i class='bx bxs-star'></i> 
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+            </div> 
+            <div class="prix">40000ar</div>
+            <button class="add-to-cart" 
+                    data-id="Tenue de sport" 
+                    data-name="Tenue de sport" 
+                    data-price="40000ar"
+                    data-image="./picture/sary3.jpg">
+                <i class='bx bx-cart-add'></i> Ajouter au panier
+            </button>
+        </div>
+
+        <!-- PRODUIT 4 -->
+        <div class="produit">
+            <div class="img-cover">
+                <img src="./picture/TPL4.jpg" alt="Tenue de plage pour homme">
+            </div>
+            <p>Tenue de plage pour homme</p>
+            <div class="rating">
+                <i class='bx bxs-star'></i> 
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+            </div> 
+            <div class="prix">30000ar</div> 
+            <button class="add-to-cart" 
+                    data-id="Tenue de plage pour homme" 
+                    data-name="Tenue de plage pour homme" 
+                    data-price="30000ar"
+                    data-image="./picture/tph1.jpg">
+                <i class='bx bx-cart-add'></i> Ajouter au panier
+            </button>
+        </div>
+
+        <!-- PRODUIT 5 -->
+        <div class="produit">
+            <div class="img-cover">
+                <img src="./picture/sfp5.jpg" alt="Tenue de plage pour femme">
+            </div>
+            <p>Tenue de plage pour femme</p>
+            <div class="rating">
+                <i class='bx bxs-star'></i> 
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+            </div> 
+            <div class="prix">25000ar</div>
+            <button class="add-to-cart" 
+                    data-id="Tenue de plage pour femme" 
+                    data-name="Tenue de plage pour femme" 
+                    data-price="25000ar"
+                    data-image="./picture/sfp5.jpg">
+                <i class='bx bx-cart-add'></i> Ajouter au panier
+            </button>
+        </div>
+
+      <!-- PRODUIT 6-->  
+       <div class="produit">
+            <div class="img-cover">
+                <img src="./picture/sfp3.jpg" alt="Tenue de plage pièce unie pour femme">
+            </div>
+            <p>Tenue de plage pièce unie pour femme</p>
+            <div class="rating">
+                <i class='bx bxs-star'></i> 
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+            </div> 
+            <div class="prix">25000ar</div> 
+            <button class="add-to-cart" 
+                    data-id="Tenue de plage pièce unie pour femme" 
+                    data-name="Tenue de plage pièce unie pour femme" 
+                    data-price="25000ar"
+                    data-image="./picture/sfp3.jpg">
+                <i class='bx bx-cart-add'></i> Ajouter au panier
+            </button>
+        </div>
+
+        <!-- PRODUIT 7-->  
+       <div class="produit">
+            <div class="img-cover">
+                <img src="./picture/sary5.jpg" alt="Tenue de sport Homme 4 pièces">
+            </div>
+            <p>Tenue de sport Homme 3 pièces</p>
+            <div class="rating">
+                <i class='bx bxs-star'></i> 
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+            </div> 
+            <div class="prix">45000ar</div> 
+            <button class="add-to-cart" 
+                    data-id="Tenue de sport Homme 4 pièces" 
+                    data-name="Tenue de sport Homme 4 pièces" 
+                    data-price="45000ar"
+                    data-image="./picture/sary5.jpg">
+                <i class='bx bx-cart-add'></i> Ajouter au panier
+            </button>
+        </div>
+
+        <!-- PRODUIT 8-->  
+       <div class="produit">
+            <div class="img-cover">
+                <img src="./picture/sary2.png" alt="Tenue de sport femme 3 pièces">
+            </div>
+            <p>Tenue de sport femme 3 pièces</p>
+            <div class="rating">
+                <i class='bx bxs-star'></i> 
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+            </div> 
+            <div class="prix">35000ar</div> 
+            <button class="add-to-cart" 
+                    data-id="Tenue de sport femme 3 pièces" 
+                    data-name="Tenue de sport femme 3 pièces" 
+                    data-price="45000ar"
+                    data-image="./picture/sary2.png">
+                <i class='bx bx-cart-add'></i> Ajouter au panier
+            </button>
+        </div>
+    </div>
+</section>
+    <section class="sevtion">
+        <div class="titre">
+            <h1> <span>Produits Par </span> Catégories</h1>
+        </div>
+        <div class="categorie container">
+            <div class="article art1">
+                <img src="./picture/sf2.jpg" alt="">
+            </div>
+            <div class="article art2">
+                <img src="./picture/sf3.jpg" alt="">
+            </div>
+            <div class="article art3">
+                <img src="./picture/sh1.png" alt="">
+            </div>
+            <div class="article art4">
+                <img src="./picture/sh2.jpg" alt="">
+            </div>
+        </div>
+    </section>
+    </section>
+    <section class="section">
+        <div class="titre">
+            <h1> <span>Produits </span> Populaire</h1>
+        </div>
+        <div class="centre-produit container">
+            <div class="produit">
+                <div class="img-cover">
+                    <img src="./picture/Montre pour homme.jpg" alt="picture"    
+                </div>
+                <p>Montre pour homme</p>
+                <div class="rating"></div>
+                    <i class='bx bxs-star'></i> 
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                </div>  
+                    <div class="prix">70000ar</div>   
+        </div>
+            <div class="produit">
+                <div class="img-cover">
+                    <img src="./picture/Montre pour femme.jpeg" alt="picture"    
+                </div>
+                <p>Montre pour femme</p>
+                <div class="rating"></div>
+                    <i class='bx bxs-star'></i> 
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                </div> 
+                    <div class="prix">70000ar</div>   
+                </div>
+            <div class="produit">
+                <div class="img-cover">
+                    <img src="./picture/sary3.jpg" alt="picture"    
+                </div>
+                <p>Tenue de sport</p>
+                <div class="rating"></div>
+                    <i class='bx bxs-star'></i> 
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                </div> 
+                    <div class="prix">40000ar</div>   
+            </div>
+            <div class="produit">
+                <div class="img-cover">
+                    <img src="./picture/tph1.jpg" alt="picture"    
+                </div>
+                <p>Tenue de plage pour homme</p>
+                <div class="rating"></div>
+                    <i class='bx bxs-star'></i> 
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                </div> 
+                    <div class="prix">40000ar</div>   
+            </div>
+            <div class="produit">
+                <div class="img-cover">
+                    <img src="./picture/montresport1.jpg" alt="picture"    
+                </div>
+                <p>Montre pour Sportifs</p>
+                <div class="rating"></div>
+                    <i class='bx bxs-star'></i> 
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                </div> 
+                    <div class="prix">35000ar</div>   
+            </div>
+            <div class="produit">
+                <div class="img-cover">
+                    <img src="./picture/ecouteur-sport2.jpg" alt="picture"    
+                </div>
+                <p>Shokz OpenRun Pro casque de sport sans fil à conduction osseuse.</p>
+                <div class="rating"></div>
+                    <i class='bx bxs-star'></i> 
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                </div> 
+                    <div class="prix">25000ar</div>   
+            </div>
+            <div class="produit">
+                <div class="img-cover">
+                    <img src="./picture/phonesport.jpg" alt="picture"    
+                </div>
+                <p>Brassard / Bracelet de sport amovible support de téléphone 3-en-1 détachable et rotatif à 360°</p>
+                <div class="rating"></div>
+                    <i class='bx bxs-star'></i> 
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                </div> 
+                    <div class="prix">450000ar</div>   
+            </div>
+            <div class="produit">
+                <div class="img-cover">
+                    <img src="./picture/ecouteur sport6.jfif" alt="picture"    
+                </div>
+                <p>Oreillette Bluetooth mono professionnelle modèle S109</p>
+                <div class="rating"></div>
+                    <i class='bx bxs-star'></i> 
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                </div> 
+                    <div class="prix">15000ar</div>   
+            </div>
+    </section>
+
+    <footer id="footer" class="section footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-center">
+                    <h3>ENTREPRISE</h3>
+                    <a href="#">Marque</a>
+                    <a href="#">Code promo</a>
+                    <a href="#">Offre special</a>
+                    <a href="#">Affilié</a>
+                    <a href="#">carte du site</a>
+                </div>
+                <div class="footer-center">
+                    <h3>ENTREPRISE</h3>
+                    <a href="#">Marque</a>
+                    <a href="#">Code promo</a>
+                    <a href="#">Offre special</a>
+                    <a href="#">Affilié</a>
+                    <a href="#">carte du site</a>
+                </div>
+                <div class="footer-center">
+                    <h3>ENTREPRISE</h3>
+                    <a href="#">Marque</a>
+                    <a href="#">Code promo</a>
+                    <a href="#">Offre special</a>
+                    <a href="#">Affilié</a>
+                    <a href="#">carte du site</a>
+                </div>
+                <div class="footer-center">
+                    <h3>CONTACTEZ NOUS</h3>
+                    <div>
+                        <span>
+                            <i class="fa fa-map-marker-alt"></i>
+                        </span>
+                        Andrainjato
+                    </div>
+                    <div>
+                        <span>
+                            <i class="fa fa-envelope"></i>
+                        </span>
+                        eshikina@gmail.com
+                    </div>
+                    <div>
+                        <span>
+                            <i class="fa fa-phone-square"></i>
+                        </span>
+                        +261 34 92 507 37
+                    </div>
+                    <div>
+                        <span>
+                            <i class="fa fa-paper-plane"></i>
+                        </span>
+                        Andrainjato Fianarantsoa 301
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            copyright©2026 Tout droits reservés à 
+            <a href="#">Sergio</a>
+        </div>
+    </footer>
+    <script type="text/javascript" src="./script.js"></script>
+
+    <div id="cartModal" class="cart-modal">
+    <div class="cart-content">
+        <div class="cart-header">
+            <h3><i class='bx bx-cart'></i> Votre Panier</h3>
+            <span class="close-cart">&times;</span>
+        </div>
+        
+        <div class="cart-items" id="cartItems">
+            <!-- Les articles apparaîtront ici -->
+            <div class="empty-cart">
+                <i class='bx bx-cart'></i>
+                <p>Votre panier est vide</p>
+                <small>Ajoutez des produits en cliquant sur "Ajouter au panier"</small>
+            </div>
+        </div>
+        
+        <div class="cart-summary">
+            <div class="total">
+                <span>Total :</span>
+                <span id="cartTotal">0 ar</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">
+                <i class='bx bx-credit-card'></i> Commander
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Notification -->
+<div id="cartNotification" class="cart-notification">
+    <i class='bx bx-check-circle'></i>
+    <span>Produit ajouté au panier !</span>
+</div>
+<script>
+ // ============================================
+// MENU MOBILE - CODE ULTRA-SIMPLE
+// ============================================
+
+// Récupérer les éléments
+var menuIcon = document.querySelector('.icon1');
+var menuFermer = document.querySelector('.fermer');
+var menu = document.querySelector('.menu');
+
+// Fonction pour ouvrir/fermer le menu
+function toggleMenu() {
+    menu.classList.toggle('monter');
+}
+
+// Fonction pour fermer le menu
+function closeMenu() {
+    menu.classList.remove('monter');
+}
+
+// Ajouter les événements (même si les éléments n'existent pas encore, on les rattrape)
+if (menuIcon) {
+    menuIcon.onclick = toggleMenu;
+}
+
+if (menuFermer) {
+    menuFermer.onclick = closeMenu;
+}
+
+console.log("✅ Menu mobile initialisé (méthode ultra-simple)");
+
+    // ============================================
+    // LE RESTE DE VOS SCRIPTS (FORMULAIRE, PANIER, ETC.)
+    // ============================================
+
+    // OUVERTURE DE LA MODAL CONTACT
+  // ============================================
+// SIMULATION D'ENVOI - VERSION ULTRA-SIMPLE
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    var form = document.getElementById('contactForm');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // 1. Récupérer le bouton
+        var btn = document.getElementById('submitBtn');
+        var originalText = btn.innerHTML;
+
+        // 2. Désactiver le bouton
+        btn.disabled = true;
+        btn.innerHTML = '⏳ Envoi en cours...';
+
+        // 3. Simulation d'envoi (2 secondes)
+        setTimeout(function() {
+
+            // 4. Afficher le message de succès
+            var messagesDiv = document.getElementById('formMessages');
+            messagesDiv.className = 'success';
+            messagesDiv.innerHTML = '✅ Message envoyé avec succès !';
+            messagesDiv.style.display = 'block';
+
+            // 5. Réactiver le bouton avec un message de confirmation
+            btn.innerHTML = '✅ Envoyé !';
+            btn.style.background = '#28a745';
+
+            // 6. Réinitialiser le formulaire et fermer la modal après 3 secondes
+            setTimeout(function() {
+                form.reset();
+                btn.innerHTML = originalText;
+                btn.style.background = '#4CAF50';
+                btn.disabled = false;
+                messagesDiv.style.display = 'none';
+                document.getElementById('contactModal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 3000);
+
+        }, 2000);
+    });
+});
+
+    // ============================================
+    // SCRIPTS DU PANIER
+    // ============================================
+
+    console.log("Début du script panier");
+    console.log("cartIcon trouvé ?", document.getElementById('cartIcon'));
+    console.log("cartCount trouvé ?", document.getElementById('cartCount'));
+    console.log("cartModal trouvé ?", document.getElementById('cartModal'));
+
+    // Variables
+    let cart = JSON.parse(localStorage.getItem('eshikina_cart')) || [];
+
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("✅ Panier initialisé");
+        updateCartCount();
+        setupCart();
+    });
+
+    // Configuration de base
+    function setupCart() {
+        console.log("🔧 Configuration du panier...");
+        
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModal = document.getElementById('cartModal');
+        const closeCart = document.querySelector('.close-cart');
+        
+        if (cartIcon) {
+            cartIcon.onclick = function(e) {
+                e.preventDefault();
+                openCart();
+            };
+            cartIcon.style.cursor = 'pointer';
+        }
+        
+        if (closeCart) {
+            closeCart.onclick = function() {
+                document.getElementById('cartModal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            };
+        }
+        
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('cartModal');
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.onclick = function(e) {
+                e.preventDefault();
+                addToCart(
+                    this.dataset.id,
+                    this.dataset.name,
+                    this.dataset.price,
+                    this.dataset.image
+                );
+            };
+        });
+    }
+
+    function openCart() {
+        const cartModal = document.getElementById('cartModal');
+        if (!cartModal) return;
+        cartModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        renderCart();
+    }
+
+    function renderCart() {
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        
+        if (!cartItems) return;
+        
+        if (cart.length === 0) {
+            cartItems.innerHTML = `
+                <div class="empty-cart">
+                    <i class='bx bx-cart'></i>
+                    <p>Votre panier est vide</p>
+                </div>
+            `;
+            if (cartTotal) cartTotal.textContent = '0 ar';
+            if (checkoutBtn) checkoutBtn.disabled = true;
+            return;
+        }
+        
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        if (cartTotal) cartTotal.textContent = total.toLocaleString() + ' ar';
+        if (checkoutBtn) checkoutBtn.disabled = false;
+        
+        cartItems.innerHTML = cart.map(item => `
+            <div class="cart-item" data-id="${item.id}">
+                <img src="${item.image}" alt="${item.name}">
+                <div class="item-details">
+                    <h4>${item.name}</h4>
+                    <div class="item-price">${item.price.toLocaleString()} ar</div>
+                    <div class="item-quantity">
+                        <button class="quantity-btn minus">-</button>
+                        <span class="quantity">${item.quantity}</span>
+                        <button class="quantity-btn plus">+</button>
+                        <button class="remove-item">
+                            <i class='bx bx-trash'></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+        
+        document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
+            btn.onclick = function() {
+                const itemId = this.closest('.cart-item').dataset.id;
+                updateQuantity(itemId, -1);
+            };
+        });
+        
+        document.querySelectorAll('.quantity-btn.plus').forEach(btn => {
+            btn.onclick = function() {
+                const itemId = this.closest('.cart-item').dataset.id;
+                updateQuantity(itemId, 1);
+            };
+        });
+        
+        document.querySelectorAll('.remove-item').forEach(btn => {
+            btn.onclick = function() {
+                const itemId = this.closest('.cart-item').dataset.id;
+                removeFromCart(itemId);
+            };
+        });
+    }
+
+    function addToCart(id, name, price, image) {
+        const existing = cart.find(item => item.id === id);
+        
+        if (existing) {
+            existing.quantity++;
+        } else {
+            cart.push({
+                id: id,
+                name: name,
+                price: parseFloat(price),
+                image: image,
+                quantity: 1
+            });
+        }
+        
+        localStorage.setItem('eshikina_cart', JSON.stringify(cart));
+        updateCartCount();
+        showNotification(name + ' ajouté !');
+        
+        const count = document.getElementById('cartCount');
+        if (count) {
+            count.style.animation = 'none';
+            setTimeout(() => count.style.animation = 'bounce 0.3s ease', 10);
+        }
+    }
+
+    function updateCartCount() {
+        const countElement = document.getElementById('cartCount');
+        if (countElement) {
+            const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+            countElement.textContent = total;
+            countElement.style.display = total > 0 ? 'flex' : 'none';
+        }
+    }
+
+    function updateQuantity(id, change) {
+        const item = cart.find(item => item.id === id);
+        if (item) {
+            item.quantity += change;
+            if (item.quantity < 1) {
+                removeFromCart(id);
+            } else {
+                localStorage.setItem('eshikina_cart', JSON.stringify(cart));
+                renderCart();
+                updateCartCount();
+            }
+        }
+    }
+
+    function removeFromCart(id) {
+        const index = cart.findIndex(item => item.id === id);
+        if (index > -1) {
+            const name = cart[index].name;
+            cart.splice(index, 1);
+            localStorage.setItem('eshikina_cart', JSON.stringify(cart));
+            renderCart();
+            updateCartCount();
+            showNotification(name + ' retiré');
+        }
+    }
+
+    function showNotification(text) {
+        const notification = document.getElementById('cartNotification');
+        if (notification) {
+            notification.querySelector('span').textContent = text;
+            notification.style.display = 'flex';
+            setTimeout(() => notification.style.display = 'none', 2000);
+        }
+    }
+
+    // BOUTON COMMANDER
+    document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.getElementById('checkoutBtn');
+        if (!btn) return;
+        
+        btn.addEventListener('click', function() {
+            const cart = JSON.parse(localStorage.getItem('eshikina_cart')) || [];
+            
+            if (cart.length === 0) {
+                alert('🛒 Votre panier est vide !');
+                return;
+            }
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            let recap = '📦 Récapitulatif de votre commande\n\n';
+            recap += 'Articles :\n';
+            cart.forEach(item => {
+                recap += `  • ${item.name} x${item.quantity} = ${(item.price * item.quantity).toLocaleString()} ar\n`;
+            });
+            recap += `\nTotal : ${total.toLocaleString()} ar`;
+            recap += `\n\nSouhaitez-vous confirmer cette commande ?`;
+            
+            if (!confirm(recap)) return;
+            
+            btn.innerHTML = '⏳ Traitement en cours...';
+            btn.disabled = true;
+            btn.style.background = '#FF9800';
+            
+            setTimeout(function() {
+                btn.innerHTML = '✅ Commande validée !';
+                btn.style.background = '#28a745';
+                
+                alert('✅ Commande confirmée avec succès !\n\nMerci pour votre confiance.\n\n📦 Total : ' + total.toLocaleString() + ' ar\n📦 Articles : ' + totalItems);
+                
+                localStorage.removeItem('eshikina_cart');
+                updateCartCount();
+                renderCart();
+                
+                setTimeout(function() {
+                    const modal = document.getElementById('cartModal');
+                    if (modal) {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                    btn.innerHTML = '<i class="bx bx-credit-card"></i> Commander';
+                    btn.disabled = false;
+                    btn.style.background = 'linear-gradient(135deg, #28a745, #218838)';
+                }, 1500);
+            }, 2000);
+        });
+    });
+
+    console.log("✅ Tous les scripts sont chargés !");
+</script>
+</body>
+</html>
