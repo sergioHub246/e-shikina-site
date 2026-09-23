@@ -1500,3 +1500,38 @@ input[type="submit"].submit-btn {
         }
     }
 }
+
+/* ============================================
+   PRIX BARRÉS + NOUVEAUX PRIX
+   ============================================ */
+
+.prix-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin: 10px 0;
+}
+
+.ancien-prix {
+    text-decoration: line-through;
+    color: #888;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.nouveau-prix {
+    color: #e63946;
+    font-size: 24px;
+    font-weight: 800;
+    background-color: #ffe5e5;
+    padding: 5px 15px;
+    border-radius: 8px;
+    animation: pulse-price 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse-price {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
